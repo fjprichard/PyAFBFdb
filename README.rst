@@ -15,7 +15,7 @@ The package source can be downloaded from the `repository <https://github.com/fj
 
 The package can be installed through PYPI with
  
- pip install PyAFBFdatabase
+ pip install PyAFBFdb
 
 Communication to the author
 ===========================
