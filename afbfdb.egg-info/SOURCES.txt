@@ -1,0 +1,17 @@
+AUTHORS.rst
+LICENSE.rst
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+afbfdb/BatchGenerator.py
+afbfdb/BuildDatabase.py
+afbfdb/ClassesIO.py
+afbfdb/Protocol.py
+afbfdb/__init__.py
+afbfdb.egg-info/PKG-INFO
+afbfdb.egg-info/SOURCES.txt
+afbfdb.egg-info/dependency_links.txt
+afbfdb.egg-info/entry_points.txt
+afbfdb.egg-info/requires.txt
+afbfdb.egg-info/top_level.txt
