@@ -1,4 +1,4 @@
-The Package PyAFBFdatabase is intended for the creation and management of database of image textures generated with the python `PyAFBF <https://fjprichard.github.io/PyAFBF/>`_.
+The Package PyAFBFdb is intended for the creation and management of database of image textures generated using `PyAFBF <https://fjprichard.github.io/PyAFBF/>`_.
 
 Package features
 ================
@@ -11,7 +11,7 @@ Package features
 Installation from sources
 =========================
 
-The package source can be downloaded from the `repository <https://github.com/fjprichard/PyAFBFdatabase>`_. 
+The package source can be downloaded from the `repository <https://github.com/fjprichard/PyAFBFdb>`_. 
 
 The package can be installed through PYPI with
  
@@ -20,10 +20,10 @@ The package can be installed through PYPI with
 Communication to the author
 ===========================
 
-PyAFBF_database is developed and maintained by Frédéric Richard. For feed-back, contributions, bug reports, contact directly the `author <https://github.com/fjprichard>`_, or use the `discussion <https://github.com/fjprichard/PyAFBFdatabase/discussions>`_ facility.
+PyAFBF_database is developed and maintained by Frédéric Richard. For feed-back, contributions, bug reports, contact directly the `author <https://github.com/fjprichard>`_, or use the `discussion <https://github.com/fjprichard/PyAFBFdb/discussions>`_ facility.
 
 
 Licence
 =======
 
-PyAFBFdatabase is under licence GNU GPL, version 3.
+PyAFBFdb is under licence GNU GPL, version 3.
