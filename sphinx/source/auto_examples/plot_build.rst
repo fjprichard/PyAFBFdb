@@ -24,7 +24,7 @@ Build a database using a predefined protocol
 
 .. codeauthor:: Frédéric Richard <frederic.richard_at_univ-amu.fr>
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-29
+.. GENERATED FROM PYTHON SOURCE LINES 10-30
 
 
 
@@ -77,7 +77,7 @@ Build a database using a predefined protocol
     Display option:False
     Example 2
     Hurst-related parameters:
-    min = 0.23, argmin length = 1.39 and center = 0.49
+    min = 0.23, argmin length = 0.79 and center = -0.60
 
 
 
@@ -92,10 +92,11 @@ Build a database using a predefined protocol
     from afbfdb.Protocol import Protocol_001
 
     # directory to save examples.
-    root_dir = "../data/"
-    data_dir = root_dir + "TestSet/"
+    home_dir = "../data/"
+    data_dir = home_dir + "TestSet/"
 
     N = 512  # image size
+    first_example = 0
     last_example = 9  # index of the last example.
     _save = True  # true if examples are to be saved.
     _display = False  # true if examples are to be displayed.
@@ -104,14 +105,14 @@ Build a database using a predefined protocol
     simu = Protocol_001(data_dir, N=N)
     # Simulate fields.
     simu.SimulateFields(_save=_save, _display=_display,
-                        expe_start=0, expe_end=last_example)
+                        expe_start=first_example, expe_end=last_example)
     # Show an example.
     simu.ShowExample(2)
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  45.243 seconds)
+   **Total running time of the script:** ( 0 minutes  55.199 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_build.py:

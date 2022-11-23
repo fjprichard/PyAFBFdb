@@ -18,12 +18,13 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Class protocol" href="../protocol.html" />
+    <link rel="next" title="Export the data." href="plot_export.html" />
     <link rel="prev" title="Load and manage an existing database" href="plot_load.html" /> 
 </head>
 
@@ -47,9 +48,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quickstart guide</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../background.html">Background</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quick-start examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_load.html">Load and manage an existing database</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Build a database using a predefined protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_export.html">Export the data.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../protocol.html">Class protocol</a></li>
@@ -69,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Quickstart guide</a> &raquo;</li>
-      <li>Build a database using a predefined protocol</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Quick-start examples</a></li>
+      <li class="breadcrumb-item active">Build a database using a predefined protocol</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/auto_examples/plot_build.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,7 +114,7 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="build-a-database-using-a-predefined-protocol">
-<span id="sphx-glr-auto-examples-plot-build-py"></span><h1>Build a database using a predefined protocol<a class="headerlink" href="#build-a-database-using-a-predefined-protocol" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-auto-examples-plot-build-py"></span><h1>Build a database using a predefined protocol<a class="headerlink" href="#build-a-database-using-a-predefined-protocol" title="Permalink to this heading"></a></h1>
 <p><em>Code author: Frédéric Richard &lt;frederic.richard_at_univ-amu.fr&gt;</em></p>
 <ul class="sphx-glr-horizontal">
 <li><img src="../_images/sphx_glr_plot_build_001.png" srcset="../_images/sphx_glr_plot_build_001.png" alt="Topothesy function" class = "sphx-glr-multi-img"/></li>
@@ -138,7 +141,7 @@ to directory:../data/TestSet/
 Display option:False
 Example 2
 Hurst-related parameters:
-min = 0.23, argmin length = 1.39 and center = 0.49
+min = 0.23, argmin length = 0.79 and center = -0.60
 </pre></div>
 </div>
 <div class="line-block">
@@ -147,10 +150,11 @@ min = 0.23, argmin length = 1.39 and center = 0.49
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">afbfdb.Protocol</span> <span class="kn">import</span> <span class="n">Protocol_001</span>
 
 <span class="c1"># directory to save examples.</span>
-<span class="n">root_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/&quot;</span>
-<span class="n">data_dir</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">+</span> <span class="s2">&quot;TestSet/&quot;</span>
+<span class="n">home_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/&quot;</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">home_dir</span> <span class="o">+</span> <span class="s2">&quot;TestSet/&quot;</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">512</span>  <span class="c1"># image size</span>
+<span class="n">first_example</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">last_example</span> <span class="o">=</span> <span class="mi">9</span>  <span class="c1"># index of the last example.</span>
 <span class="n">_save</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># true if examples are to be saved.</span>
 <span class="n">_display</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># true if examples are to be displayed.</span>
@@ -159,12 +163,12 @@ min = 0.23, argmin length = 1.39 and center = 0.49
 <span class="n">simu</span> <span class="o">=</span> <span class="n">Protocol_001</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 <span class="c1"># Simulate fields.</span>
 <span class="n">simu</span><span class="o">.</span><span class="n">SimulateFields</span><span class="p">(</span><span class="n">_save</span><span class="o">=</span><span class="n">_save</span><span class="p">,</span> <span class="n">_display</span><span class="o">=</span><span class="n">_display</span><span class="p">,</span>
-                    <span class="n">expe_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">expe_end</span><span class="o">=</span><span class="n">last_example</span><span class="p">)</span>
+                    <span class="n">expe_start</span><span class="o">=</span><span class="n">first_example</span><span class="p">,</span> <span class="n">expe_end</span><span class="o">=</span><span class="n">last_example</span><span class="p">)</span>
 <span class="c1"># Show an example.</span>
 <span class="n">simu</span><span class="o">.</span><span class="n">ShowExample</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 1 minutes  45.243 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  55.199 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-build-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/935288a7dcf5e10b0c3b24e3b9209311/plot_build.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_build.py</span></code></a></p>
@@ -181,7 +185,7 @@ min = 0.23, argmin length = 1.39 and center = 0.49
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="plot_load.html" class="btn btn-neutral float-left" title="Load and manage an existing database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../protocol.html" class="btn btn-neutral float-right" title="Class protocol" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_export.html" class="btn btn-neutral float-right" title="Export the data." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -2,19 +2,19 @@ Metadata-Version: 2.1
 Name: afbfdb
 Version: 0.0.1
 Summary: Generation of texture database from the package PyAFBF
-Home-page: https://github.com/fjprichard/PyAFBFdatabase/
-Author: Frederic Richard
+Home-page: https://github.com/fjprichard/PyAFBFdb/
+Author: Frédéric Richard
 Author-email: frederic.richard@univ-amu.fr
 License: GPLv3
-Project-URL: Documentation, https://fjprichard.github.io/PyAFBF_database/
-Project-URL: Source, https://github.com/fjprichard/PyAFBF_database/
-Project-URL: Tracker, https://github.com/fjprichard/PyAFBF_database/issues
-Keywords: simulation,anisotropic fractional Brownian field,image texture,database
+Project-URL: Documentation, https://fjprichard.github.io/PyAFBFdb/
+Project-URL: Source, https://github.com/fjprichard/PyAFBFdb/
+Project-URL: Tracker, https://github.com/fjprichard/PyAFBFdb/issues
+Keywords: simulation,image texture,anisotropic fractional Brownian field,database
 Platform: Linux
 Platform: MacOSX
 Platform: Windows
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
-Classifier: Development Status :: 5 - Production/Stable
+Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Science/Research
 Classifier: Intended Audience :: End Users/Desktop
 Classifier: Intended Audience :: Developers
@@ -25,7 +25,7 @@ Classifier: Topic :: Scientific/Engineering :: Image Processing
 License-File: LICENSE.rst
 License-File: AUTHORS.rst
 
-The Package PyAFBFdatabase is intended for the creation and management of database of image textures generated with the python `PyAFBF <https://fjprichard.github.io/PyAFBF/>`_.
+The Package PyAFBFdb is intended for the creation and management of database of image textures generated using `PyAFBF <https://fjprichard.github.io/PyAFBF/>`_.
 
 Package features
 ================
@@ -38,29 +38,27 @@ Package features
 Installation from sources
 =========================
 
-The package source can be downloaded from the `repository <https://github.com/fjprichard/PyAFBFdatabase>`_. 
+The package source can be downloaded from the `repository <https://github.com/fjprichard/PyAFBFdb>`_. 
 
 The package can be installed through PYPI with
  
- pip install PyAFBFdatabase
+ pip install PyAFBFdb
 
 Communication to the author
 ===========================
 
-PyAFBF_database is developed and maintained by Frédéric Richard. For feed-back, contributions, bug reports, contact directly the `author <https://github.com/fjprichard>`_, or use the `discussion <https://github.com/fjprichard/PyAFBFdatabase/discussions>`_ facility.
+PyAFBF_database is developed and maintained by FrÃ©dÃ©ric Richard. For feed-back, contributions, bug reports, contact directly the `author <https://github.com/fjprichard>`_, or use the `discussion <https://github.com/fjprichard/PyAFBFdb/discussions>`_ facility.
 
 
 Licence
 =======
 
-PyAFBFdatabase is under licence GNU GPL, version 3.
+PyAFBFdb is under licence GNU GPL, version 3.
 
 
 Credits
 =======
 
 PyAFBFdatabase is written and maintained by Frederic Richard, Professor at Aix-Marseille University, France.
-
-
 
 

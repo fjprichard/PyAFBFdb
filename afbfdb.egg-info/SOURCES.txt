@@ -4,8 +4,6 @@ MANIFEST.in
 README.rst
 setup.cfg
 setup.py
-afbfdb/BatchGenerator.py
-afbfdb/BuildDatabase.py
 afbfdb/ClassesIO.py
 afbfdb/Protocol.py
 afbfdb/__init__.py

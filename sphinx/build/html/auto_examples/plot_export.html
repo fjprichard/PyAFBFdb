@@ -18,13 +18,14 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Build a database using a predefined protocol" href="plot_build.html" />
-    <link rel="prev" title="Load and manage an existing database" href="plot_load.html" /> 
+    <link rel="next" title="Class protocol" href="../protocol.html" />
+    <link rel="prev" title="Build a database using a predefined protocol" href="plot_build.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,10 +48,11 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quickstart guide</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../background.html">Background</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quick-start examples</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="plot_load.html">Load and manage an existing database</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Export the data.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_build.html">Build a database using a predefined protocol</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Export the data.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../protocol.html">Class protocol</a></li>
@@ -70,9 +72,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Quickstart guide</a> &raquo;</li>
-      <li>Export the data.</li>
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Quick-start examples</a></li>
+      <li class="breadcrumb-item active">Export the data.</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/auto_examples/plot_export.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,7 +114,7 @@
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="export-the-data">
-<span id="sphx-glr-auto-examples-plot-export-py"></span><h1>Export the data.<a class="headerlink" href="#export-the-data" title="Permalink to this headline"></a></h1>
+<span id="sphx-glr-auto-examples-plot-export-py"></span><h1>Export the data.<a class="headerlink" href="#export-the-data" title="Permalink to this heading"></a></h1>
 <p><em>Code author: Frédéric Richard &lt;frederic.richard_at_univ-amu.fr&gt;</em></p>
 <ul class="sphx-glr-horizontal">
 <li><img src="../_images/sphx_glr_plot_export_001.png" srcset="../_images/sphx_glr_plot_export_001.png" alt="Topothesy function" class = "sphx-glr-multi-img"/></li>
@@ -146,25 +148,52 @@ Exported features:
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import a simulation protocol.</span>
 <span class="kn">from</span> <span class="nn">afbfdb</span> <span class="kn">import</span> <span class="n">protocol</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">concatenate</span><span class="p">,</span> <span class="n">savetxt</span><span class="p">,</span> <span class="n">uint16</span><span class="p">,</span> <span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">arange</span>
+<span class="kn">from</span> <span class="nn">imageio.v2</span> <span class="kn">import</span> <span class="n">imsave</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="c1"># directory to save examples.</span>
-<span class="n">root_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/&quot;</span>
-<span class="n">data_dir</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">+</span> <span class="s2">&quot;SimulationSet_001/&quot;</span>
+<span class="n">home_dir</span> <span class="o">=</span> <span class="s2">&quot;../data/&quot;</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">home_dir</span> <span class="o">+</span> <span class="s2">&quot;SimulationSet_001/&quot;</span>
+<span class="n">data_out</span> <span class="o">=</span> <span class="n">home_dir</span> <span class="o">+</span> <span class="s2">&quot;SimulationSet_001-export/&quot;</span>
 
 <span class="c1"># Load the protocol.</span>
 <span class="n">simu</span> <span class="o">=</span> <span class="n">protocol</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">simu</span><span class="o">.</span><span class="n">nbexpe</span>
 <span class="n">simu</span><span class="o">.</span><span class="n">ShowExample</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="c1"># Export the data</span>
-<span class="n">images</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="n">simu</span><span class="o">.</span><span class="n">ExportData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
-<span class="c1"># Show an image and features.</span>
+<span class="c1"># Export the data in a numpy array format.</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="n">simu</span><span class="o">.</span><span class="n">ExportData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Show an image and its features.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exported features:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="p">:])</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_out</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_out</span><span class="p">)</span>
+<span class="c1"># Export features in csv format.</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">concatenate</span><span class="p">((</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">features</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;example number, Hurst index, argmin set length, argmin set center&#39;</span>
+<span class="n">savetxt</span><span class="p">(</span><span class="n">data_out</span> <span class="o">+</span> <span class="s1">&#39;features.csv&#39;</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+
+
+<span class="c1"># Export images in png format.</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">glmax</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="mi">16</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">uint16</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">expe</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">ide</span> <span class="o">=</span> <span class="n">simu</span><span class="o">.</span><span class="n">SetExampleNumberStr</span><span class="p">(</span><span class="n">expe</span><span class="p">)</span>
+    <span class="c1"># Conversion of the image into uint16 by normalization.</span>
+    <span class="n">immin</span> <span class="o">=</span> <span class="n">amin</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">expe</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>
+    <span class="n">immax</span> <span class="o">=</span> <span class="n">amax</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">expe</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>
+    <span class="n">imrange</span> <span class="o">=</span> <span class="n">immax</span> <span class="o">-</span> <span class="n">immin</span>
+    <span class="n">image</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">expe</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">immin</span><span class="p">)</span> <span class="o">/</span> <span class="n">imrange</span> <span class="o">*</span> <span class="n">glmax</span>
+    <span class="c1"># Save the image.</span>
+    <span class="n">imsave</span><span class="p">(</span><span class="n">data_out</span> <span class="o">+</span> <span class="s2">&quot;image-&quot;</span> <span class="o">+</span> <span class="n">ide</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.006 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.416 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-export-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4652ba8998a0cd6acd9c1ddcd25fb29d/plot_export.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_export.py</span></code></a></p>
@@ -180,8 +209,8 @@ Exported features:
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_load.html" class="btn btn-neutral float-left" title="Load and manage an existing database" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="plot_build.html" class="btn btn-neutral float-right" title="Build a database using a predefined protocol" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="plot_build.html" class="btn btn-neutral float-left" title="Build a database using a predefined protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../protocol.html" class="btn btn-neutral float-right" title="Class protocol" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

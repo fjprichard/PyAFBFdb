@@ -29,23 +29,6 @@ Quick-start examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Export the data.">
-
-.. only:: html
-
-  .. image:: /auto_examples/images/thumb/sphx_glr_plot_export_thumb.png
-    :alt: Export the data.
-
-  :ref:`sphx_glr_auto_examples_plot_export.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Export the data.</div>
-    </div>
-
-
-.. raw:: html
-
     <div class="sphx-glr-thumbcontainer" tooltip="Build a database using a predefined protocol">
 
 .. only:: html
@@ -63,6 +46,23 @@ Quick-start examples
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Export the data.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_plot_export_thumb.png
+    :alt: Export the data.
+
+  :ref:`sphx_glr_auto_examples_plot_export.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Export the data.</div>
+    </div>
+
+
+.. raw:: html
+
     </div>
 
 
@@ -70,8 +70,8 @@ Quick-start examples
    :hidden:
 
    /auto_examples/plot_load
-   /auto_examples/plot_export
    /auto_examples/plot_build
+   /auto_examples/plot_export
 
 
 .. only:: html

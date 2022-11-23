@@ -88,8 +88,8 @@ Load and manage an existing database
 
 
     # directory to save examples.
-    root_dir = "../data/"
-    data_dir = root_dir + "SimulationSet_001/"
+    home_dir = "../data/"
+    data_dir = home_dir + "SimulationSet_001/"
 
     # Load the protocol.
     simu = protocol(data_dir)
@@ -99,7 +99,7 @@ Load and manage an existing database
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.922 seconds)
+   **Total running time of the script:** ( 0 minutes  1.005 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_load.py:

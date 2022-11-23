@@ -1,5 +1,0 @@
-Class protocol
---------------
-
-.. autoclass:: afbfdb.Protocol.protocol
-	       

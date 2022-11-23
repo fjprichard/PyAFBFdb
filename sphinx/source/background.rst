@@ -1,4 +1,4 @@
-
+Background
 ==========
 .. sectionauthor:: Frédéric Richard <frederic.richard_at_univ-amu.fr>
 
@@ -18,9 +18,9 @@ Such a texture is sampled from a random field called the **anisotropic fractiona
 
 The PyAFBFdb package enables to generate database formed by 
 
-- a series of field models by sampling the step coefficients of the Hurst and topothesy functions at random,
+	- a series of field models by sampling the step coefficients of the Hurst and topothesy 		functions at random,
 
-- a series of texture images by sampling from each field model.  
+	- a series of texture images by sampling from each field model.  
 
 A typical example of a database includes a field model as given by its Hurst and topothesy functions, and a texture image sampled from the model. 
 	   

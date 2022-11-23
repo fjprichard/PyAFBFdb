@@ -202,12 +202,17 @@ class protocol:
 
         if self.DataConsistency is not True:
             print("Setting failed due to inconsistent data.")
+            
+    def SetExampleNumberStr(self, n):
+        """Set the number of the example in an str format.
+        """
+        return(str(1000000 + n)[1:])
 
     def SetFileName(self, n):
         """Set the name of the file of an example.
         """
-        filename = str(1000000 + n)
-        filename = self.rep + "/example-" + filename[1:]
+        numberstr = self.SetExampleNumberStr(n)
+        filename = self.rep + "/example-" + numberstr
 
         return filename
 

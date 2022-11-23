@@ -18,15 +18,16 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="References" href="refs.html" />
-    <link rel="prev" title="Build a database using a predefined protocol" href="auto_examples/plot_build.html" /> 
+    <link rel="prev" title="Export the data." href="auto_examples/plot_export.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,7 +50,8 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Quickstart guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Quick-start examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Class protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="refs.html">References</a></li>
 </ul>
@@ -67,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Class protocol</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Class protocol</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/protocol.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,7 +105,7 @@
 }
 </style>
 <section id="class-protocol">
-<h1>Class protocol<a class="headerlink" href="#class-protocol" title="Permalink to this headline"></a></h1>
+<h1>Class protocol<a class="headerlink" href="#class-protocol" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="afbfdb.Protocol.protocol">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">afbfdb.Protocol.</span></span><span class="sig-name descname"><span class="pre">protocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SimulationSet_001'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smode_cst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unifmin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Hmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Hmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.99</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smode_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nonunif'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afbfdb.Protocol.protocol" title="Permalink to this definition"></a></dt>
@@ -200,6 +202,12 @@ features[j, :] are the features of the (n_start +j)th examples.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="afbfdb.Protocol.protocol.SetExampleNumberStr">
+<span class="sig-name descname"><span class="pre">SetExampleNumberStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afbfdb.Protocol.protocol.SetExampleNumberStr" title="Permalink to this definition"></a></dt>
+<dd><p>Set the number of the example in an str format.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="afbfdb.Protocol.protocol.SetFileName">
 <span class="sig-name descname"><span class="pre">SetFileName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#afbfdb.Protocol.protocol.SetFileName" title="Permalink to this definition"></a></dt>
 <dd><p>Set the name of the file of an example.</p>
@@ -236,7 +244,7 @@ features[j, :] are the features of the (n_start +j)th examples.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="auto_examples/plot_build.html" class="btn btn-neutral float-left" title="Build a database using a predefined protocol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="auto_examples/plot_export.html" class="btn btn-neutral float-left" title="Export the data." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="refs.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

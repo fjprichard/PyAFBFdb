@@ -24,7 +24,7 @@ Export the data.
 
 .. codeauthor:: Frédéric Richard <frederic.richard_at_univ-amu.fr>
 
-.. GENERATED FROM PYTHON SOURCE LINES 10-29
+.. GENERATED FROM PYTHON SOURCE LINES 10-56
 
 
 
@@ -95,27 +95,54 @@ Export the data.
     # Import a simulation protocol.
     from afbfdb import protocol
     from matplotlib import pyplot as plt
+    from numpy import zeros, concatenate, savetxt, uint16, amin, amax, arange
+    from imageio.v2 import imsave
+    import os
 
     # directory to save examples.
-    root_dir = "../data/"
-    data_dir = root_dir + "SimulationSet_001/"
+    home_dir = "../data/"
+    data_dir = home_dir + "SimulationSet_001/"
+    data_out = home_dir + "SimulationSet_001-export/"
 
     # Load the protocol.
     simu = protocol(data_dir)
+    n = simu.nbexpe
     simu.ShowExample(7)
-    # Export the data
-    images, features = simu.ExportData(0, 9)
-    # Show an image and features.
+    # Export the data in a numpy array format.
+    images, features = simu.ExportData(0, n-1)
+    # Show an image and its features.
     plt.figure()
     plt.imshow(images[7, :, :], cmap="gray")
     plt.show()
     print("Exported features:")
     print(features[7, :])
 
+    if os.path.isdir(data_out) is False:
+        os.mkdir(data_out)
+    # Export features in csv format.
+    features = concatenate((arange(0, n).reshape((n, 1)), features), axis=1)
+    header = 'example number, Hurst index, argmin set length, argmin set center'
+    savetxt(data_out + 'features.csv', features, delimiter=',', header=header)
+
+
+    # Export images in png format.
+    m = images.shape[1:]
+    glmax = 2**16 - 1
+    image = zeros(m, dtype=uint16)
+    for expe in range(n):
+        ide = simu.SetExampleNumberStr(expe)
+        # Conversion of the image into uint16 by normalization.
+        immin = amin(images[expe, :, :])
+        immax = amax(images[expe, :, :])
+        imrange = immax - immin
+        image[:, :] = (images[expe, :, :] - immin) / imrange * glmax
+        # Save the image.
+        imsave(data_out + "image-" + ide + ".png", image)
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.006 seconds)
+   **Total running time of the script:** ( 0 minutes  1.416 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_export.py:

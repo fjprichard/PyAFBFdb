@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; PyAFBFdb  documentation</title>
+  <title>Background &mdash; PyAFBFdb  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/sg_gallery.css" type="text/css" />
@@ -18,10 +18,11 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -48,7 +49,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="auto_examples/index.html">Quick-start examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="protocol.html">Class protocol</a></li>
 <li class="toctree-l1"><a class="reference internal" href="refs.html">References</a></li>
@@ -67,8 +69,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>&lt;no title&gt;</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Background</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/background.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,6 +104,9 @@
     text-align: unset;
 }
 </style>
+<section id="background">
+<h1>Background<a class="headerlink" href="#background" title="Permalink to this heading"></a></h1>
+<p><em>Section author: Frédéric Richard &lt;frederic.richard_at_univ-amu.fr&gt;</em></p>
 <p>PyAFBFdb is supplementary to the package <a class="reference external" href="https://github.com/fjprichard/PyAFBFdb">PyAFBF</a>. The package PyAFBF is devoted to the simulation of rough <span class="xref std std-term">anisotropic</span> textures of images. It is documented on the <a class="reference external" href="https://fjprichard.github.io/PyAFBF/">github page</a> and in the papers <span id="id1">[<a class="reference internal" href="refs.html#id3" title="F.J.P. Richard. PyAFBF: a python library for sampling image textures from the anisotropic fractional brownian field. Journal of Open Source Software, 7(75):3821, 2022. URL: https://doi.org/10.21105/joss.03821, doi:10.21105/joss.03821.">1</a>]</span>, <span id="id2">[<a class="reference internal" href="refs.html#id2" title="H. Biermé, M. Moisan, and F. Richard. A turning-band method for the simulation of anisotropic fractional Brownian field. J. Comput. Graph. Statist., 24(3):885–904, 2015.">2</a>]</span>. PyAFBFdb enables building and managing database of textures generated from PyAFBF.</p>
 <p>A texture example generated with PyAFBF is shown below</p>
 <img alt="_images/texture.png" src="_images/texture.png" />
@@ -109,10 +114,12 @@
 <img alt="_images/topo.png" src="_images/topo.png" />
 <img alt="_images/hurst.png" src="_images/hurst.png" />
 <p>The PyAFBFdb package enables to generate database formed by</p>
-<ul class="simple">
-<li><p>a series of field models by sampling the step coefficients of the Hurst and topothesy functions at random,</p></li>
+<blockquote>
+<div><ul class="simple">
+<li><p>a series of field models by sampling the step coefficients of the Hurst and topothesy                 functions at random,</p></li>
 <li><p>a series of texture images by sampling from each field model.</p></li>
 </ul>
+</div></blockquote>
 <p>A typical example of a database includes a field model as given by its Hurst and topothesy functions, and a texture image sampled from the model.</p>
 <p>In addition, an example also includes some texture features related to the Hurst functions:</p>
 <ul>
@@ -132,6 +139,7 @@
 </ul>
 <p>In the example shown above they are <span class="math notranslate nohighlight">\(H = 0.16\)</span>, <span class="math notranslate nohighlight">\(\mathcal{L}_H = 1.74\)</span> and <span class="math notranslate nohighlight">\(\varphi_H = 0.91\)</span>.</p>
 <p>The basics for manipulating the database build by PyAFBFdb are described in the quickstart examples.</p>
+</section>
 
 
            </div>

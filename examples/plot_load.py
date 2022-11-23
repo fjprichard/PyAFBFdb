@@ -12,8 +12,8 @@ from afbfdb import protocol
 
 
 # directory to save examples.
-root_dir = "../data/"
-data_dir = root_dir + "SimulationSet_001/"
+home_dir = "../data/"
+data_dir = home_dir + "SimulationSet_001/"
 
 # Load the protocol.
 simu = protocol(data_dir)
