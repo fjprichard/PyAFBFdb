@@ -10,7 +10,7 @@ Export the data.
 # Import a simulation protocol.
 from afbfdb import protocol
 from matplotlib import pyplot as plt
-from numpy import zeros, concatenate, savetxt, uint16, amin, amax, arange
+from numpy import zeros, savetxt, uint16, amin, amax
 from imageio.v2 import imsave
 import os
 
@@ -35,8 +35,7 @@ print(features[7, :])
 if os.path.isdir(data_out) is False:
     os.mkdir(data_out)
 # Export features in csv format.
-features = concatenate((arange(0, n).reshape((n, 1)), features), axis=1)
-header = 'example number, Hurst index, argmin set length, argmin set center'
+header = 'Hurst index, argmin set length, argmin set center, Hmax'
 savetxt(data_out + 'features.csv', features, delimiter=',', header=header)
 
 

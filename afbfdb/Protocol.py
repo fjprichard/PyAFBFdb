@@ -202,11 +202,11 @@ class protocol:
 
         if self.DataConsistency is not True:
             print("Setting failed due to inconsistent data.")
-            
+
     def SetExampleNumberStr(self, n):
         """Set the number of the example in an str format.
         """
-        return(str(1000000 + n)[1:])
+        return str(1000000 + n)[1:]
 
     def SetFileName(self, n):
         """Set the name of the file of an example.
@@ -241,6 +241,7 @@ class protocol:
         self.field.H = Z[0]
         self.field.hurst_argmin_lenght = Z[1]
         self.field.hurst_argmin_center = Z[2]
+        self.field.Hmax = Z[3] + Z[0]
 
         return(1)
 
@@ -255,7 +256,8 @@ class protocol:
         with open(filename + "-features.pickle", "wb") as f:
             pickle.dump([self.field.H,
                          self.field.hurst_argmin_lenght,
-                         self.field.hurst_argmin_center], f)
+                         self.field.hurst_argmin_center,
+                         self.field.Hmax - self.field.H], f)
 
     def ShowExample(self, n=None):
         """Show an example.
@@ -270,9 +272,9 @@ class protocol:
             self.X.Display(3 * n + 3)
             print("Example %d" % (self.n))
             print("Hurst-related parameters:")
-            print("min = %3.2f, argmin length = %3.2f and center = %3.2f"
+            print("min=%3.2f, argmin length=%3.2f, center=%3.2f, Hmax=%3.2f"
                   % (self.field.H, self.field.hurst_argmin_lenght,
-                     self.field.hurst_argmin_center))
+                     self.field.hurst_argmin_center, self.field.Hmax))
 
     def SetRandomState(self):
         """Set the random state used for simulations.
@@ -346,8 +348,9 @@ class protocol:
               features[j, :] are the features of the (n_start +j)th examples.
 
               * features[j, 0] is the Hurst index.
-              * features[j, 1] is the lenght of the Hurst argmin set.
+              * features[j, 1] is the length of the Hurst argmin set.
               * features[j, 2] is the center of the Hurst argmin set.
+              * features[j, 3] is the range length of the Hurst function.
 
         """
         if self.DataConsistency is not True:
@@ -358,7 +361,7 @@ class protocol:
 
         nbexamples = n_end - n_start + 1
         images = zeros((nbexamples, self.N, self.N), dtype=float)
-        features = zeros((nbexamples, 3), dtype=float)
+        features = zeros((nbexamples, 4), dtype=float)
         for j in range(n_start, n_end + 1):
             j0 = j - n_start
             self.LoadExample(j)
@@ -367,6 +370,7 @@ class protocol:
             features[j0, 0] = self.field.H
             features[j0, 1] = self.field.hurst_argmin_lenght
             features[j0, 2] = self.field.hurst_argmin_center
+            features[j0, 3] = self.field.Hmax - self.field.H
 
         return(images, features)
 
@@ -382,7 +386,7 @@ def Protocol_001(rep="SimulationSet_001", N=64):
     :param int nbexpe: optional
         Last element of the database. The default is 1000.
     :param int N : optional
-        Image size. The default is 256.
+        Image size. The default is 64.
 
     :returns: The protocol to deal with the database.
     :rtype: protocol.
@@ -392,6 +396,39 @@ def Protocol_001(rep="SimulationSet_001", N=64):
     M = 2  # Number of steps in the Hurst and topothesy functions.
 
     smode_cst = "unifmin"  # Mode of simulation of step constants.
+    Hmin = 0.05  # Minimal value for the Hurst function.
+    Hmax = 0.95  # Maximal value for the Hurst function.
+
+    smode_int = "nonunif"  # Mode of simulation of step intervals.
+    dint = pi / 100.0  # Minimal length of intervals of the Hurst function.
+
+    # Set the database used for training and testing.
+    simu = protocol(rep, M, smode_cst, Hmin, Hmax, smode_int, dint, K, N)
+
+    return simu
+
+
+def Protocol_002(rep="SimulationSet_002", N=64):
+    """A protocol to manage database of simulations of random fields.
+
+    In this protocol the Hurst range, the length and the center of
+    the argmin set of the Hurst function are uniformly sampled.
+
+
+    :param str rep: directory of the database.
+    :param int nbexpe: optional
+        Last element of the database. The default is 1000.
+    :param int N : optional
+        Image size. The default is 64.
+
+    :returns: The protocol to deal with the database.
+    :rtype: protocol.
+    """
+
+    K = 500  # Number of bands.
+    M = 2  # Number of steps in the Hurst and topothesy functions.
+
+    smode_cst = "unifrange"  # Mode of simulation of step constants.
     Hmin = 0.05  # Minimal value for the Hurst function.
     Hmax = 0.95  # Maximal value for the Hurst function.
 
