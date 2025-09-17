@@ -13,7 +13,7 @@ from afbfdb import protocol
 
 # directory to save examples.
 home_dir = "../data/"
-data_dir = home_dir + "SimulationSet_001/"
+data_dir = home_dir + "TestSet/"
 
 # Load the protocol.
 simu = protocol(data_dir)
