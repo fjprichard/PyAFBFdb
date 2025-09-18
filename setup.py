@@ -15,7 +15,7 @@ __version__ = re.search(
 
 setup(
     # name of the package
-    name='afbfdb',
+    name='PyAFBFdb',
     # You can specify all the packages manually or use the find_package
     # function
     packages=find_packages(),
@@ -70,3 +70,4 @@ setup(
         ],
     },
 )
+
