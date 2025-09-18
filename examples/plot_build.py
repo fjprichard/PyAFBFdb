@@ -12,13 +12,11 @@ from afbfdb.Protocol import protocol
 home_dir = "../data/"
 data_dir = home_dir + "TestSet/"
 
-nb_examples = 9  # Number of examples.
-_save = True  # true if examples are to be saved.
-_display = False  # true if examples are to be displayed.
+nb_examples = 10  # Number of examples.
 
 # Set the protocol.
 simu = protocol(data_dir)
 # Simulate fields.
-simu.SimulateFields(expe_end=nb_examples, _save=_save, _display=_display)
+simu.CreateFields(expe_end=nb_examples)
 # Show an example.
 simu.ShowExample(2)

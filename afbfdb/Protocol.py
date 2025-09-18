@@ -78,6 +78,14 @@ class protocol:
         # Display the setting.
         self.DisplaySetting()
 
+        # Feature dictionary
+        self.feature_names = {
+            0: "H",
+            1: "Hurst_argmin_length",
+            2: "Hurst_argmin_center",
+            3: "Hmax"
+        }
+
     def DisplaySetting(self):
         """Display the setting of the protocol.
         """
@@ -139,30 +147,30 @@ class protocol:
         feat = sort(feat)
         ind = nonzero(exam - image[0:n] != 0)
         if ind[0].size != 0:
-            print("Missing images:", ind[0])
+            raise Exception("Missing images:", ind[0])
         ind = nonzero(exam - topo[0:n] != 0)
         if ind[0].size != 0:
-            print("Missing topothesy:", ind[0])
+            raise Exception("Missing topothesy:", ind[0])
         ind = nonzero(exam - hurst[0:n] != 0)
         if ind[0].size != 0:
-            print("Missing Hurst:", ind[0])
+            raise Exception("Missing Hurst:", ind[0])
         ind = nonzero(exam - feat[0:n] != 0)
         if ind[0].size != 0:
-            print("Missing features:", ind[0])
+            raise Exception("Missing features:", ind[0])
 
         if image.size > n or topo.size > n or hurst.size > n or feat.size > n:
-            print("Unequal number of example data.")
-            print("Data limited to " + str(n - 1))
+            raise Exception("Unequal number of example data.")
+            raise Exception("Data limited to " + str(n - 1))
 
         # Number of samples.
         self.nbexpe = n
 
         if setting is False:
-            print("Setting file: missing.")
+            raise Exception("Setting file: missing.")
             self.DataConsistency = False
 
         if randomstate is False:
-            print("Random state: missing.")
+            raise Exception("Random state: missing.")
             self.DataConsistency = False
 
         if self.DataConsistency is False:
@@ -245,35 +253,42 @@ class protocol:
                 pickle.dump([rs], f)
             set_state(rs)
 
-    def SimulateFields(self, expe_end=99, _save=True, _display=False):
-        """Simulate a series of random fields.
+    def IterateFields(self, expe_start=0, expe_end=None, _create=True):
+        """Iterate to create new examples or visualize existing ones.
         """
-        # Set the mode of simulation.
-        self.field.hurst.SetStepSampleMode(self.params_model['smode_cst'],
-                                           self.params_model['Hmin'],
-                                           self.params_model['Hmax'],
-                                           self.params_model['smode_int'],
-                                           self.params_model['dint'])
-
-        print("Field simulation:")
-        print("Save option:" + str(_save))
-        if _save:
-            print("to directory:" + str(self.rep))
-        print("Display option:" + str(_display))
+        if expe_end is None:
+            expe_end = self.nbexpe
+        if _create:
+            # Create new examples.
+            print('Field creation.')
+            expe_start = self.nbexpe
+            # Set the mode of simulation.
+            self.field.hurst.SetStepSampleMode(self.params_model['smode_cst'],
+                                               self.params_model['Hmin'],
+                                               self.params_model['Hmax'],
+                                               self.params_model['smode_int'],
+                                               self.params_model['dint'])
+        else:
+            # Visualize existing examples.
+            print('Field visualization.')
+            expe_end = min(expe_end, self.nbexpe)
 
         start = time.time()
-        for n in range(expe_end):
+        for n in range(expe_start, expe_end):
             filename = self.SetFileName(n)
             radname = filename[-6:]
             if os.path.isfile(filename + "-hurst.pickle") is False:
+                # Creating a new sample.
                 seed(n)
                 # Name of the field.
                 self.field.name = "Field " + radname
                 # Define a new model.
                 self.field.hurst.ChangeParameters()
                 self.field.NormalizeModel()
-                self.field.hurst.fname = "Hurst function - field " + radname
-                self.field.topo.fname = "Topothesy function - field " + radname
+                self.field.hurst.fname =\
+                    "Hurst function - field " + radname
+                self.field.topo.fname =\
+                    "Topothesy function - field " + radname
                 # Compute some model features.
                 self.field.ComputeFeatures_Hurst()
                 # Simulate the field
@@ -281,15 +296,51 @@ class protocol:
                 start = time.time()
                 self.X = self.field.Simulate(self.coord)
                 self.X.name = "Example - field " + radname
-                if _save is True:
-                    print(self.field.hurst.fname)
-                    self.SaveExample(n)
                 print("Example %d: %4.3f sec." % (n, time.time() - start))
-                if _display is True:
-                    self.ShowExample(n)
+                self.SaveExample(n)
                 self.nbexpe += 1
+            else:
+                self.ShowExample(n)
 
-    def ExportData(self, n_start=0, n_end=None):
+    def DisplayFields(self, expe_start=0, expe_end=None):
+        """Show several examples.
+        """
+        self.IterateFields(expe_start, expe_end, _create=False)
+
+    def CreateFields(self, expe_start=0, expe_end=None):
+        """Create several examples.
+        """
+        self.IterateFields(expe_start, expe_end, _create=True)
+
+    def ExportData(self, n):
+        """Export an example.
+
+        :param int n: the index of the example to export.
+        :returns: (images, features)
+        :rtype: (ndarrays, ndarrays)
+
+        .. note::
+            - image is an array of size N x N:
+            - features is an array of size 4 containing
+
+              * features[0] is the Hurst index.
+              * features[1] is the length of the Hurst argmin set.
+              * features[2] is the center of the Hurst argmin set.
+              * features[3] is the maximum of the Hurst function.
+        """
+        image = zeros((self.params_images['N'], self.params_images['N']),
+                      dtype=float)
+        features = zeros(4, dtype=float)
+        self.LoadExample(n)
+        image[:, :] = self.X.values.reshape(self.X.M)[:, :]
+        features[0] = self.field.H
+        features[1] = self.field.hurst_argmin_lenght
+        features[2] = self.field.hurst_argmin_center
+        features[3] = self.field.Hmax - self.field.H
+
+        return image, features
+
+    def ExportDataset(self, n_start=0, n_end=None):
         """Export the data.
 
         :param int n_start: first example.
@@ -299,9 +350,9 @@ class protocol:
         :rtype: (ndarrays, ndarrays)
 
         .. note::
-            - images is an array of size N x N x (n_end - n_start + 1):
+            - images is an array of size (n_end - n_start + 1) x N x N:
               images[j, :, :] is the image of the (n_start + j)th example.
-            - features, an array of size N x N x (n_end - n_start + 1):
+            - features, an array of size  (n_end - n_start + 1) X 4:
               features[j, :] are the features of the (n_start +j)th examples.
 
               * features[j, 0] is the Hurst index.
@@ -310,9 +361,6 @@ class protocol:
               * features[j, 3] is the range length of the Hurst function.
 
         """
-        if self.DataConsistency is not True:
-            print("ExportData: set the database.")
-            return -1
         if n_end is None:
             n_end = self.nbexpe - 1
 
@@ -322,12 +370,11 @@ class protocol:
         features = zeros((nbexamples, 4), dtype=float)
         for j in range(n_start, n_end + 1):
             j0 = j - n_start
-            self.LoadExample(j)
-            images[j0, :, :] =\
-                self.X.values.reshape(self.X.M)[:, :]
-            features[j0, 0] = self.field.H
-            features[j0, 1] = self.field.hurst_argmin_lenght
-            features[j0, 2] = self.field.hurst_argmin_center
-            features[j0, 3] = self.field.Hmax - self.field.H
+            image, feature = self.ExportData(j)
+            images[j, :, :] = image[:, :]
+            features[j0, 0] = feature[0]
+            features[j0, 1] = feature[1]
+            features[j0, 2] = feature[2]
+            features[j0, 3] = feature[3]
 
         return images, features
