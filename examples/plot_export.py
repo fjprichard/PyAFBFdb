@@ -10,19 +10,19 @@ Export the data.
 # Import a simulation protocol.
 from afbfdb import protocol
 from matplotlib import pyplot as plt
-from numpy import zeros, savetxt, uint16, amin, amax
+from numpy import zeros, savetxt, uint8, amin, amax
 from imageio.v2 import imsave
 import os
 
 # directory to save examples.
 home_dir = "../data/"
-data_dir = home_dir + "SimulationSet_001/"
-data_out = home_dir + "SimulationSet_001-export/"
+data_dir = home_dir + "TestSet/"
+data_out = home_dir + "TestSet-Export"
 
 # Load the protocol.
 simu = protocol(data_dir)
 n = simu.nbexpe
-simu.ShowExample(7)
+simu.ShowExample(3)
 # Export the data in a numpy array format.
 images, features = simu.ExportData(0, n-1)
 # Show an image and its features.
@@ -41,8 +41,8 @@ savetxt(data_out + 'features.csv', features, delimiter=',', header=header)
 
 # Export images in png format.
 m = images.shape[1:]
-glmax = 2**16 - 1
-image = zeros(m, dtype=uint16)
+glmax = simu.params_images['glmax']
+image = zeros(m, dtype=uint8)
 for expe in range(n):
     ide = simu.SetExampleNumberStr(expe)
     # Conversion of the image into uint16 by normalization.

@@ -1,0 +1,15 @@
+---
+model: # Modeling of the hurst and topothesy functions.
+    fname: "Anisotropic Fractional Brownian field whose Hurst index is uniformly sampled, with smooth Hurst function."  
+    ftype: "step-smooth" 
+    M: 2  # Number of steps. 
+    Hmin: 0.01  # min and max of the Hurst function.
+    Hmax: 0.99
+    smode_int: "nonunif"  # Size and position of the Hurst index interval uniformly sampled.
+    smode_cst: "unifmin"  # Hurst index uniformly sampled.
+    dint: 0.0314  # Minimal length of intervals of the Hurst functions.
+
+images: # Setting for image generation.
+  K: 500  # Number of bands.
+  N: 128  # image size
+...

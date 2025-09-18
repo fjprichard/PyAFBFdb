@@ -1,0 +1,15 @@
+---
+model: # Modeling of the hurst and topothesy functions.
+    fname: "Fractional Brownian field whose Hurst index is uniformly sampled."  
+    ftype: "fbf - step" 
+    M: 1  # Number of steps. 
+    Hmin: 0.01  # min and max of the Hurst function.
+    Hmax: 0.99
+    smode_int: "unif"  # Mode of simulation of function step intervals.
+    smode_cst: "unifmin"  # Mode of simulation of Hurst step constants.
+    dint: 0.0314  # Minimal length of intervals of the Hurst functions.
+
+images: # Setting for image generation.
+  K: 500  # Number of bands.
+  N: 128  # image size
+...

@@ -1,4 +1,4 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: afbfdb
 Version: 0.0.1
 Summary: Generation of texture database from the package PyAFBF
@@ -9,7 +9,7 @@ License: GPLv3
 Project-URL: Documentation, https://fjprichard.github.io/PyAFBFdb/
 Project-URL: Source, https://github.com/fjprichard/PyAFBFdb/
 Project-URL: Tracker, https://github.com/fjprichard/PyAFBFdb/issues
-Keywords: image texture,anisotropic fractional Brownian field,simulation,database
+Keywords: image texture,simulation,anisotropic fractional Brownian field,database
 Platform: Linux
 Platform: MacOSX
 Platform: Windows
@@ -24,6 +24,22 @@ Classifier: Programming Language :: Python :: 3.8
 Classifier: Topic :: Scientific/Engineering :: Image Processing
 License-File: LICENSE.rst
 License-File: AUTHORS.rst
+Requires-Dist: PyAFBF>=0.2.0
+Requires-Dist: matplotlib>=3.3.2
+Requires-Dist: scipy>=1.5.2
+Requires-Dist: imageio>=2.9.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: platform
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: summary
 
 The Package PyAFBFdb is intended for the creation and management of database of image textures generated using `PyAFBF <https://fjprichard.github.io/PyAFBF/>`_.
 
@@ -60,7 +76,5 @@ Credits
 =======
 
 PyAFBFdatabase is written and maintained by Frederic Richard, Professor at Aix-Marseille University, France.
-
-
 
 
