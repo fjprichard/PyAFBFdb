@@ -20,7 +20,7 @@ The package can be installed through PYPI with
 Documentation
 =============
 
-Check the PyAFBF documentation for includes a `presentation <>`_ of the package.
+Check the PyAFBF documentation for includes a `presentation <https://fjprichard.github.io/PyAFBF/database.html>`_ of the package.
 
 Communication to the author
 ===========================
