@@ -34,7 +34,7 @@ setup(
     author_email='frederic.richard@univ-amu.fr',
     # If any packages contains data which are not python files, include them
     # package_data={'myapp': 'data'},
-    install_requires=['PyAFBF>=0.2.0', 'matplotlib>=3.3.2',
+    install_requires=['PyAFBF>=0.2.3', 'matplotlib>=3.3.2',
                       'scipy>=1.5.2', 'imageio>=2.9.0'],
     # classifiers is needed for uploading package on pypi.
     # The list of classifiers elements can be found at :

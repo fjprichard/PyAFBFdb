@@ -1,0 +1,27 @@
+Predefined settings for building database
+=========================================
+
+-----------
+Setting_001 
+-----------
+
+Database examples are simulations of different isotropic Fractional Brownian field whose Hurst index is uniformly sampled.
+
+-----------
+setting_002
+-----------
+
+Database examples are simulations of anisotropic Fractional Brownian field. These fields are defined with Hurst and topothesy function having two steps. The minimal value of this Hurst function (Hurst index) is uniformly sampled, as well as the position and the size of the interval where the Hurst function is equal to the Hurst index.
+
+-----------
+Setting_003
+-----------
+
+Database examples are simulations of anisotropic Fractional Brownian field. These fields are defined with Hurst and topothesy function having two steps with smooth transitions. The minimal value of this Hurst function (Hurst index) is uniformly sampled, as well as the position and the size of the interval where the Hurst function is equal to the Hurst index.
+
+-----------
+Setting_004
+-----------
+
+Database examples are simulations of elementary Fractional Brownian field whose Hurst index is uniformly sampled. The position and size of the interval where the topothesy vanishes are uniformly sampled. 
+

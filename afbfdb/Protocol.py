@@ -15,6 +15,7 @@ from afbf import tbfield, perfunction, sdata, coordinates
 from afbf.Classes.SpatialData import LoadSdata
 from afbf.Simulation.TurningBands import LoadTBField
 
+
 class protocol:
     """This class enables to manage and build database.
 
