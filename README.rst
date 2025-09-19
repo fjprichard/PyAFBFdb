@@ -3,7 +3,7 @@ The Package PyAFBFdb is intended for the creation and management of database of 
 Package features
 ================
 
-- Generation of image texture database with a predefined protocol,
+- Generation of image texture database with a predefined or user-defined protocol.
 
 - Management of the database.
 
@@ -16,6 +16,11 @@ The package source can be downloaded from the `repository <https://github.com/fj
 The package can be installed through PYPI with
  
  pip install PyAFBFdb
+ 
+Documentation
+=============
+
+Check the PyAFBF documentation for includes a `presentation <>`_ of the package.
 
 Communication to the author
 ===========================

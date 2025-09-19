@@ -7,7 +7,7 @@ Build a database using a predefined protocol
 
 .. codeauthor:: Frédéric Richard <frederic.richard_at_univ-amu.fr>
 """
-from afbfdb.Protocol import protocol
+from afbfdb import protocol
 # directory to save examples.
 home_dir = "../data/"
 data_dir = home_dir + "TestSet/"

@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-"""Class for managing database of simulated AFBF with
-random topothesy and Hurst functions.
+"""Class for managing database of simulated AFBF with random topothesy
+and Hurst functions.
 
 .. codeauthor:: Frédéric Richard <frederic.richard_at_univ-amu.fr>
 """
@@ -213,7 +213,7 @@ class protocol:
         self.field.Hmax = Z[3] + Z[0]
 
     def SaveExample(self, n):
-        """Save an example.
+        """Save an example in pickle file.
 
         :param int n: The index of the example.
         """
@@ -314,7 +314,7 @@ class protocol:
         self.IterateFields(expe_start, expe_end, _create=True)
 
     def ExportData(self, n):
-        """Export an example.
+        """Export an example in a numpy format.
 
         :param int n: the index of the example to export.
         :returns: (images, features)
@@ -342,7 +342,7 @@ class protocol:
         return image, features
 
     def ExportDataset(self, n_start=0, n_end=None):
-        """Export the data.
+        """Export the database in numpy format.
 
         :param int n_start: first example.
         :param int n_end: last example.
